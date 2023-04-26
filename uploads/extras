@@ -120,3 +120,19 @@
             echo "<p>direccion: " . $row['direccion']. ', ' .$row['codigo_postal']. ', ' .$row['provincia']. "</p>";
             echo "<p>sexo: " . $row['sexo'] . "</p>";
             echo '</div>';
+
+
+ 
+        $fetched_nombre = $row['nombre'];
+        $fetched_apellido = $row['apellido'];
+        $fetched_fecha_nacimiento = $row['fecha_nacimiento'];
+        $fetched_correo = $row['correo'];
+        $fetched_telefono = $row['telefono'];
+        $fetched_direccion = $row['direccion'];
+        $fetched_provincia = $row['provincia'];
+        $fetched_codigo_postal = $row['codigo_postal'];
+        $fetched_numero_tarjeta = $row['numero_tarjeta'];
+        $fetched_dni = $row['dni'];
+        $fetched_sexo = $row['sexo'];
+        $fetched_terminos = $row['terminos'];
+        $fetched_image = $row['imagen'];           

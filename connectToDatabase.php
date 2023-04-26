@@ -27,7 +27,7 @@ try {
   $conncreate->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   // sql to create table
-  $sql = "CREATE TABLE IF NOT EXISTS users_register (
+  $sql = "CREATE TABLE IF NOT EXISTS user_register (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50),
     apellido VARCHAR(50),
@@ -39,6 +39,7 @@ try {
     codigo_postal VARCHAR(10),
     numero_tarjeta VARCHAR(20),
     dni VARCHAR(20),
+    imagen VARCHAR(150),
     sexo ENUM('Masculino','Femenino','Otro'),
     terminos BOOLEAN
   )";

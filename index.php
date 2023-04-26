@@ -79,20 +79,21 @@ if (isset($_POST['terminos'])) {
 }; */
 
 /* looping through each input to rmeove warning message  */
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-$inputs = array('nombre', 'apellido', 'fecha_nacimiento', 'correo', 'telefono', 'direccion', 'provincia', 'codigo_postal', 'numero_tarjeta', 'dni', 'sexo', 'terminos');
+    $inputs = array('nombre', 'apellido', 'fecha_nacimiento', 'correo', 'telefono', 'direccion', 'provincia', 'codigo_postal', 'numero_tarjeta', 'dni', 'sexo', 'terminos');
 
-foreach ($inputs as $input) {
-  if (isset($_POST[$input])) {
-    ${$input} = $_POST[$input];
-  } else {
-    ${$input} = "";
-  }
-}
+    foreach ($inputs as $input) {
+    if (isset($_POST[$input])) {
+        ${$input} = $_POST[$input];
+    } else {
+        ${$input} = "";
+    }
+    }
 
-$target_dir = "uploads/";
+    $target_dir = "uploads/";
 
-if (isset($_FILES["miImagen"]) && $_FILES["miImagen"]["error"] == 0) {
+
     $target_file = $target_dir . basename($_FILES["miImagen"]["name"]);
    
 
@@ -287,8 +288,8 @@ if (isset($_FILES["miImagen"]) && $_FILES["miImagen"]["error"] == 0) {
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
-   $sql = "INSERT INTO user_register (nombre, apellido, fecha_nacimiento, correo, telefono, direccion, provincia, codigo_postal, numero_tarjeta, dni, sexo, terminos)
-   VALUES ('$nombre', '$apellido', '$fecha_nacimiento', '$correo', '$telefono', '$direccion', '$provincia', '$codigo_postal', '$numero_tarjeta', '$dni', '$sexo', '$terminos')";
+   $sql = "INSERT INTO user_register (nombre, apellido, fecha_nacimiento, correo, telefono, direccion, provincia, codigo_postal, numero_tarjeta, dni, imagen, sexo, terminos)
+   VALUES ('$nombre', '$apellido', '$fecha_nacimiento', '$correo', '$telefono', '$direccion', '$provincia', '$codigo_postal', '$numero_tarjeta', '$dni', '$target_file', '$sexo', '$terminos')";
    
    echo $target_file;
  
@@ -314,7 +315,7 @@ if (isset($_FILES["miImagen"]) && $_FILES["miImagen"]["error"] == 0) {
     die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT nombre, apellido, fecha_nacimiento, correo, telefono, direccion, provincia, codigo_postal, numero_tarjeta, dni, sexo, terminos FROM user_register";
+    $sql = "SELECT nombre, apellido, fecha_nacimiento, correo, telefono, direccion, provincia, codigo_postal, numero_tarjeta, dni, imagen, sexo, terminos FROM user_register";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
@@ -327,28 +328,16 @@ if (isset($_FILES["miImagen"]) && $_FILES["miImagen"]["error"] == 0) {
     while ($row = mysqli_fetch_assoc($result)) {  
         
         echo '<div class="business-card">';
-        echo '<div><img src="' . $target_file . '" alt="My Image"></div>';
-        echo '<div>';
-        echo '<p>nombre: ' . $fetched_nombre . ' ' . $apellido . '</p>';
-        echo '<p>correo: ' . $fetched_correo . '</p>';
-        echo '<p>telefono: ' . $fetched_telefono . '</p>';
-        echo '<p>direccion: ' . $fetched_direccion . ', ' . $fetched_codigo_postal . ', ' . $fetched_provincia . '</p>';
-        echo '<p>sexo: ' . $fetched_sexo . '</p>';
-        echo '</div>';
+            echo '<div><img src="' . $row['imagen'] . '" alt="My Image"></div>';
+            echo '<div>';
+                echo '<p>nombre: ' . $row['nombre'] . ' ' . $row['apellido'] . '</p>';
+                echo '<p>correo: ' . $row['correo'] . '</p>';
+                echo '<p>telefono: ' . $row['telefono'] . '</p>';
+                echo '<p>direccion: ' . $row['direccion'] . ', ' . $row['codigo_postal'] . ', ' . $row['provincia'] . '</p>';
+                echo '<p>sexo: ' . $row['sexo'] . '</p>';
+            echo '</div>';
         echo '</div>';
    
-        $fetched_nombre = $row['nombre'];
-        $fetched_apellido = $row['apellido'];
-        $fetched_fecha_nacimiento = $row['fecha_nacimiento'];
-        $fetched_correo = $row['correo'];
-        $fetched_telefono = $row['telefono'];
-        $fetched_direccion = $row['direccion'];
-        $fetched_provincia = $row['provincia'];
-        $fetched_codigo_postal = $row['codigo_postal'];
-        $fetched_numero_tarjeta = $row['numero_tarjeta'];
-        $fetched_dni = $row['dni'];
-        $fetched_sexo = $row['sexo'];
-        $fetched_terminos = $row['terminos'];
     }
 
     

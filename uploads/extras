@@ -1,0 +1,122 @@
+
+/*  $uploadOk = 1; */
+   /*  $imagename = "";
+
+    if (isset($_POST['submit'])) {
+       $imagename = $_FILES["fileToUpload"]["name"];
+       $imageTempName = $_FILES["fileToUpload"]["tmp_name"];
+       $target_dir = "userimages/";
+       $imageFileType = strtolower(pathinfo($imagename,PATHINFO_EXTENSION));
+       $target_file = $target_dir.basename($imagename); 
+       $extensions_arr = array("jpg","jpeg","png","gif");
+
+       if($_FILES["fileToUpload"]["size"] > 50000){
+
+       }
+
+       if(in_array($imageFileType, $extensions_arr)){
+        move_uploaded_file($imageTempName, $target_file);
+        echo "file has been uploaded";
+       }
+       else {
+        echo "Sorry, there was an error uploading your file.";
+      }
+       
+    } */
+  
+   
+   /*  $apellido = $_POST["apellido"];
+    $fecha_nacimiento = $_POST["fecha_nacimiento"];
+    $correo = $_POST["correo"];
+    $telefono = $_POST["telefono"];
+    $direccion = $_POST["direccion"];
+    $provincia = $_POST["provincia"];
+    $codigo_postal = $_POST["codigo_postal"];
+    $numero_tarjeta = $_POST["numero_tarjeta"];
+    $dni = $_POST["dni"];
+    $sexo = $_POST["sexo"];
+    $terminos = $_POST["terminos"]; */
+
+    /* $insertInDb = 
+    "INSERT INTO registerform (nombre, apellido, fecha_nacimiento, correo, telefono, direccion, provincia, codigo_postal, numero_tarjeta, dni, sexo, terminos) 
+    VALUES ('$nombre', '$fecha_nacimiento', '$correo', '$telefono', '$direccion', '$provincia', '$codigo_postal', '$numero_tarjeta', '$dni', '$sexo', '$terminos')";
+
+    if(mysqli_query($conn, $insertInDb)){
+        echo "<h1>connection successful</h1>";
+    }
+    echo "<h1>connection unsuccessful</h1>"; */
+<?php 
+       echo '<div>';
+       echo '<img src="<?php echo $target_file?>" alt="My Image">';
+       echo "<p>Name: " . $nombre . "</p>";
+       echo "<p>apellido: " . $apellido . "</p>";
+       echo "<p>fecha _nacimiento: " . $fecha_nacimiento . "</p>";
+       echo "<p>correo: " . $correo . "</p>";
+       echo "<p>telefono: " . $telefono . "</p>";
+       echo "<p>direccion: " . $direccion . "</p>";
+       echo "<p>provincia: " . $provincia . "</p>";
+       echo "<p>codigo_postal: " . $codigo_postal . "</p>";
+       echo "<p>numero_tarjeta: " . $numero_tarjeta . "</p>";
+       echo "<p>dni: " . $dni . "</p>";
+       echo "<p>sexo: " . $sexo . "</p>";
+       echo "<p>terminos: " . $terminos . "</p>";
+       echo '</div>';
+    ?>  
+    
+
+    <!-- $insertInDb = 
+    "INSERT INTO registerform ('nombre') VALUES ('$nombre')";
+    "INSERT INTO registerform ('apellido') VALUES ('$apellido')";
+    "INSERT INTO registerform ('fecha_nacimiento') VALUES ('$fecha_nacimiento')";
+    "INSERT INTO registerform ('correo') VALUES ('$correo')";
+    "INSERT INTO registerform ('telefono') VALUES ('$telefono')";
+    "INSERT INTO registerform ('direccion') VALUES ('$direccion')";
+    "INSERT INTO registerform ('provincia') VALUES ('$provincia')";
+    "INSERT INTO registerform ('codigo_postal') VALUES ('$codigo_postal')";
+    "INSERT INTO registerform ('numero_tarjeta') VALUES ('$numero_tarjeta')";
+    "INSERT INTO registerform ('dni') VALUES ('$dni')";
+    "INSERT INTO registerform ('sexo') VALUES ('$sexo')";
+    "INSERT INTO registerform ('terminos') VALUES ('$terminos')"; -->
+
+
+    <div class ="business-card">
+        <div><img src="<?php echo $target_file?>" alt="My Image"></div>
+        <div>
+            <p>Name: <?php echo $nombre ?></p>
+            <p>apellido: <?php echo $apellido ?></p>
+            <p>dni: <?php echo $dni ?></p>
+            <p>fecha_nacimiento: <?php echo $fecha_nacimiento ?></p>
+            <p>correo: <?php echo $correo ?></p>
+            <p>telefono: <?php echo $telefono ?></p>
+            <p>direccion: <?php echo $direccion ?></p>
+            <p>provincia: <?php echo $provincia ?></p>
+            <p>codigo_postal: <?php echo $codigo_postal ?></p>
+            <!-- <p>numero_tarjeta: <?php echo $numero_tarjeta ?></p> -->
+            <p>sexo: <?php echo $sexo ?></p>
+           <!--  <p>terminos: <?php echo $terminos ?></p> -->
+        </div>   
+   </div>
+
+
+   foreach ($row as $field => $value) {
+            echo '<div>';
+            echo '<img src="<?php echo $target_file?>" alt="My Image">';
+            echo "<p>Name: " . $nombre . ' ' .$apellido. "</p>";
+            echo "<p>fecha _nacimiento: " . $value.$fecha_nacimiento . "</p>";
+            echo "<p>correo: " . $value.$correo . "</p>";
+            echo "<p>telefono: " . $value.$telefono . "</p>";
+            echo "<p>direccion: " . $value.$direccion. ', ' .$value.$codigo_postal. ', ' .$value.$provincia. "</p>";
+            echo "<p>sexo: " . $value.$sexo . "</p>";
+            echo '</div>';
+            
+        }
+
+        echo '<div>';
+            echo '<img src="<?php echo $target_file?>" alt="My Image">';
+            echo "<p>Name: " . $row['nombre'] . ' ' .$row['apellido']. "</p>";
+            echo "<p>fecha _nacimiento: " . $row['fecha_nacimiento'] . "</p>";
+            echo "<p>correo: " . $row['correo']. "</p>";
+            echo "<p>telefono: " . $row['telefono'] . "</p>";
+            echo "<p>direccion: " . $row['direccion']. ', ' .$row['codigo_postal']. ', ' .$row['provincia']. "</p>";
+            echo "<p>sexo: " . $row['sexo'] . "</p>";
+            echo '</div>';

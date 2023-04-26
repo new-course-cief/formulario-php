@@ -1,0 +1,176 @@
+body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   gap: 15px;
+}
+   
+form {
+  width: 73%;
+  margin: 0 auto;
+  background-color: #353a35;
+  padding: 81px;
+  color: #d9cbcb;
+  border-radius: 10px;
+}
+
+.name-surname {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select, textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+}
+
+input[type="file"] {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+
+.provincia-cp {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+#provincia{
+  padding: 10px 60px;
+}
+
+/* send button  */
+button {
+    font-family: inherit;
+    font-size: 20px;
+    background: royalblue;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  button span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  button svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  button:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+  }
+  
+  button:hover svg {
+    transform: translateX(1.2em) rotate(45deg) scale(1.1);
+  }
+  
+  button:hover span {
+    transform: translateX(5em);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  @keyframes fly-1 {
+    from {
+      transform: translateY(0.1em);
+    }
+  
+    to {
+      transform: translateY(-0.1em);
+    }
+  }
+  /* button styling ends here */
+
+  /* .notification .notification-message {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 79px
+  } */
+ 
+
+  .business-card {
+  display: flex;
+  align-items: center;
+  width: 550px;
+  height: 320px;
+ /*  border: 2px solid black; */
+ background-color: #7ad151;;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.business-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.business-card div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+ /*  background-color: #148af1; */
+  transition: transform 0.3s ease-in-out;
+}
+
+.business-card div:hover {
+  transform: translateX(10px);
+}
+
+.business-card p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-family: Arial, sans-serif;
+}

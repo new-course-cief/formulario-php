@@ -1,6 +1,16 @@
 <?php
 // Connect to database
-include('connectToDatabase.php');
+$serverName = "localhost";
+    $userName = "root";
+    $password = "";
+    $databaseName = "registerform";
+
+    $conn = mysqli_connect($serverName, $userName, $password, $databaseName);
+
+    if (!$conn) {
+       die(mysqli_connect_error());
+    }
+    echo "<h2>connection successful</h2>";
 
 // Retrieve the id parameter from the POST array
 $id = $_POST['id'];

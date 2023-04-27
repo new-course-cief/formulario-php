@@ -101,6 +101,8 @@
                     <label for="terminos">Acepto los términos y condiciones</label>
                 </div>
             
+                <form method="post" action="delete.php" class="data-form delete-data-form">
+                <input type="hidden" name="id" value="' . $row['id'] . '">
                 <button type="submit">
                     <div class="svg-wrapper-1">
                         <div class="svg-wrapper">
@@ -112,18 +114,60 @@
                     </div>
                     <span>Enviar</span>
                 </button>
+                </form>
+
                 </form>      
              ' ;  
             }
         } else {
             echo 'No results found';
         }
+        
      }
+
+
+     // Check if the form has been submitted
+    /*  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Get the form data
+        $id = $_POST['id'];
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
+        $fecha_nacimiento = $_POST['fecha_nacimiento'];
+        $correo = $_POST['correo'];
+        $telefono = $_POST['telefono'];
+        $direccion = $_POST['direccion'];
+        $provincia = $_POST['provincia'];
+        $codigo_postal = $_POST['codigo_postal'];
+        $numero_tarjeta = $_POST['numero_tarjeta'];
+        $dni = $_POST['dni'];
+        $imagen = $_POST['imagen'];
+        $sexo = $_POST['sexo'];
+        $terminos = $_POST['terminos'];
+
+        // Update the database record
+        $sql = "UPDATE user_register SET 
+                    nombre='$nombre', 
+                    apellido='$apellido', 
+                    fecha_nacimiento='$fecha_nacimiento', 
+                    correo='$correo', 
+                    telefono='$telefono', 
+                    direccion='$direccion', 
+                    provincia='$provincia', 
+                    codigo_postal='$codigo_postal', 
+                    numero_tarjeta='$numero_tarjeta', 
+                    dni='$dni', 
+                    imagen='$imagen', 
+                    sexo='$sexo', 
+                    terminos='$terminos' 
+                WHERE id='$id'";
+                
+        if (mysqli_query($conn, $sql)) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . mysqli_error($conn);
+        }
+    }
+
     // Close the database connection
-    mysqli_close($conn);
-    ?>
-    <?php
-    $id = $_GET['id'];
-    $sql = "UPDATE user_register WHERE id = '$id'";
-    /* $result = mysqli_query($conn, $sql); */
+    mysqli_close($conn); */
     ?>

@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css?v=1">
+    <link rel="stylesheet" type="text/css" href="style.css?v=3">
     <title>Regristration Form</title>
 </head>
 <body>
@@ -273,7 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p>sexo: <?php echo $sexo ?></p>
         </div>   
    </div>
-
+    <h2>Datos de Base de Datos</h2>
    <?php
    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -337,10 +337,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo '<p>telefono: ' . $row['telefono'] . '</p>';
                 echo '<p>direccion: ' . $row['direccion'] . ', ' . $row['codigo_postal'] . ', ' . $row['provincia'] . '</p>';
                 echo '<p>sexo: ' . $row['sexo'] . '</p>';
-                echo '<form method="post" action="delete.php" class="delete-data-form">';
-                echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
-                echo '<button type="submit">Delete</button>';
-                echo '</form>';  
+                echo '<span class="modifier-forms">';
+                    echo '<form method="post" action="delete.php" class="data-form delete-data-form">';
+                    echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
+                    echo '<button type="submit">Delete</button>';
+                    echo '</form>'; 
+                    echo '<form method="get" action="edit.php" class="data-form edit-data-form">';
+                    echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
+                    echo '<button type="submit">Edit</button>';
+                    echo '</form>'; 
+                echo '</span>';
             echo '</div>';
         echo '</div>';
       

@@ -175,10 +175,19 @@ button {
   margin-bottom: 10px;
   font-family: Arial, sans-serif;
 }
-.delete-data-form{
+.data-form{
   width: auto; 
   margin: revert; 
   background-color: unset; 
   padding: 0;
   margin-top: -15px;
+}
+/* .edit-data-form{
+  margin-top: 5px;
+} */
+.modifier-forms{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
 }

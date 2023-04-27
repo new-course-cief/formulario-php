@@ -136,3 +136,18 @@
         $fetched_sexo = $row['sexo'];
         $fetched_terminos = $row['terminos'];
         $fetched_image = $row['imagen'];           
+
+        echo '<div class="business-card">';
+            echo '<div><img src="' . $row['imagen'] . '" alt="My Image"></div>';
+            echo '<div>';
+                echo '<p>nombre: ' . $row['nombre'] . ' ' . $row['apellido'] . '</p>';
+                echo '<p>correo: ' . $row['correo'] . '</p>';
+                echo '<p>telefono: ' . $row['telefono'] . '</p>';
+                echo '<p>direccion: ' . $row['direccion'] . ', ' . $row['codigo_postal'] . ', ' . $row['provincia'] . '</p>';
+                echo '<p>sexo: ' . $row['sexo'] . '</p>';
+                echo '<form method="post" action="delete.php">';
+                echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
+                echo '<button type="submit">Delete</button>';
+                echo '</form>';
+            echo '</div>';
+        echo '</div>';

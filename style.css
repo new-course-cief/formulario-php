@@ -4,6 +4,7 @@ body {
    align-items: center;
    flex-direction: column;
    gap: 15px;
+   font-family: Lato, Helvetica, sans-serif;
 }
    
 form {
@@ -139,9 +140,9 @@ button {
   display: flex;
   align-items: center;
   width: 550px;
-  height: 320px;
- /*  border: 2px solid black; */
- background-color: #7ad151;;
+  height: 320px; 
+  /*  border: 2px solid black; */
+  background-color: #7ad151;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
@@ -173,4 +174,11 @@ button {
   font-size: 16px;
   margin-bottom: 10px;
   font-family: Arial, sans-serif;
+}
+.delete-data-form{
+  width: auto; 
+  margin: revert; 
+  background-color: unset; 
+  padding: 0;
+  margin-top: -15px;
 }

@@ -5,7 +5,7 @@ include('connectToDatabase.php')
 
 <?php
 
-/* if (isset($_POST['nombre'])) {
+ if (isset($_POST['nombre'])) {
     $nombre = $_POST['nombre'];
 } else {
     $nombre = "";
@@ -76,12 +76,12 @@ if (isset($_POST['terminos'])) {
     $terminos = $_POST['terminos'];
 } else {
     $terminos = "";
-}; */
+}; 
 
 /* looping through each input to rmeove warning message  */
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $inputs = array('nombre', 'apellido', 'fecha_nacimiento', 'correo', 'telefono', 'direccion', 'provincia', 'codigo_postal', 'numero_tarjeta', 'dni', 'sexo', 'terminos');
+   /*  $inputs = array('nombre', 'apellido', 'fecha_nacimiento', 'correo', 'telefono', 'direccion', 'provincia', 'codigo_postal', 'numero_tarjeta', 'dni', 'sexo', 'terminos');
 
     foreach ($inputs as $input) {
     if (isset($_POST[$input])) {
@@ -89,11 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         ${$input} = "";
     }
-    }
+    } */
 
     $target_dir = "uploads/";
-
-
     $target_file = $target_dir . basename($_FILES["miImagen"]["name"]);
    
 
@@ -155,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css?v=2">
+    <link rel="stylesheet" type="text/css" href="style.css?v=1">
     <title>Regristration Form</title>
 </head>
 <body>
@@ -271,35 +269,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p>nombre: <?php echo $nombre. ' ' . $apellido ?></p>
             <p>correo: <?php echo $correo ?></p>
             <p>telefono: <?php echo $telefono ?></p>
-            <p>direccion: <?php echo $direccion. ', ' .$codigo_postal. ', ' .$provincia ?></p>
+            <p>direccion: <?php echo $direccion. ' ' .$codigo_postal. ' ' .$provincia ?></p>
             <p>sexo: <?php echo $sexo ?></p>
         </div>   
    </div>
 
    <?php
-   
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "registerform";
+   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "registerform";
+
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        // Check connection
+        if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $sql = "INSERT INTO user_register (nombre, apellido, fecha_nacimiento, correo, telefono, direccion, provincia, codigo_postal, numero_tarjeta, dni, imagen, sexo, terminos)
+        VALUES ('$nombre', '$apellido', '$fecha_nacimiento', '$correo', '$telefono', '$direccion', '$provincia', '$codigo_postal', '$numero_tarjeta', '$dni', '$target_file', '$sexo', '$terminos')";
+        
     
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-    // Check connection
-    if (!$conn) {
-      die("Connection failed: " . mysqli_connect_error());
-    }
-   $sql = "INSERT INTO user_register (nombre, apellido, fecha_nacimiento, correo, telefono, direccion, provincia, codigo_postal, numero_tarjeta, dni, imagen, sexo, terminos)
-   VALUES ('$nombre', '$apellido', '$fecha_nacimiento', '$correo', '$telefono', '$direccion', '$provincia', '$codigo_postal', '$numero_tarjeta', '$dni', '$target_file', '$sexo', '$terminos')";
-   
-   echo $target_file;
- 
-   if ($conn->query($sql) === TRUE) {
-     echo "New record created successfully";
-   } else {
-     echo "Error: " . $sql . "<br>" . $conn->error;
+        if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+        } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        
+        $conn->close();
    }
+    
    
-   $conn->close();
    ?>
 
     <?php
@@ -315,7 +318,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT nombre, apellido, fecha_nacimiento, correo, telefono, direccion, provincia, codigo_postal, numero_tarjeta, dni, imagen, sexo, terminos FROM user_register";
+    $sql = "SELECT id, nombre, apellido, fecha_nacimiento, correo, telefono, direccion, provincia, codigo_postal, numero_tarjeta, dni, imagen, sexo, terminos FROM user_register";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
@@ -325,9 +328,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $field takes the field name... e.g email, id etc
     $value is the corresponding value to each $field(field). */
 
-    while ($row = mysqli_fetch_assoc($result)) {  
-        
-        echo '<div class="business-card">';
+    while ($row = mysqli_fetch_assoc($result)) {         
+            echo '<div class="business-card">';
             echo '<div><img src="' . $row['imagen'] . '" alt="My Image"></div>';
             echo '<div>';
                 echo '<p>nombre: ' . $row['nombre'] . ' ' . $row['apellido'] . '</p>';
@@ -335,8 +337,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo '<p>telefono: ' . $row['telefono'] . '</p>';
                 echo '<p>direccion: ' . $row['direccion'] . ', ' . $row['codigo_postal'] . ', ' . $row['provincia'] . '</p>';
                 echo '<p>sexo: ' . $row['sexo'] . '</p>';
+                echo '<form method="post" action="delete.php" class="delete-data-form">';
+                echo '<input type="hidden" name="id" value="' . $row['id'] . '">';
+                echo '<button type="submit">Delete</button>';
+                echo '</form>';  
             echo '</div>';
         echo '</div>';
+      
+       
    
     }
 
